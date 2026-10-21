@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Culturama BI – Mapeamento Regional da Diversidade</title>
+<style>
+ :root{--bg:#ffffff;--card:#ffffff;--ink:#25213a;--mut:#696579;--line:#e8e0f3;--pri:#6420bd;--acc:#ff8b28;--grn:#a6e635;--blu:#3158bd;--hdr:#6420bd;--hdrink:#ffffff;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#ffffff;--card:#ffffff;--ink:#25213a;--mut:#696579;--line:#e8e0f3;--pri:#6420bd;--acc:#ff8b28;--grn:#a6e635;--blu:#3158bd;--hdr:#6420bd;--hdrink:#ffffff}}
+:root[data-theme="dark"]{--bg:#ffffff;--card:#ffffff;--ink:#25213a;--mut:#696579;--line:#e8e0f3;--pri:#6420bd;--acc:#ff8b28;--grn:#a6e635;--blu:#3158bd;--hdr:#6420bd;--hdrink:#ffffff}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+header{background:linear-gradient(112deg,#5517b5 0%,#842ce0 58%,#b34bf4 100%);color:var(--hdrink);padding:18px 20px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;border-bottom:5px solid var(--grn);box-shadow:0 3px 12px #6420bd20}
+h1{margin:0;font-size:22px;letter-spacing:.5px;font-weight:800}header small{display:block;font:12px system-ui,sans-serif;opacity:.8}
+nav{display:flex;flex-wrap:wrap;gap:4px}
+button{font:13px system-ui,sans-serif;cursor:pointer;border:1px solid var(--line);background:#fff;color:inherit;padding:7px 12px;border-radius:8px;transition:background .15s,border-color .15s}
+nav button{color:var(--hdrink);background:#ffffff12;border-color:#ffffff55}nav button.on{background:var(--grn);color:#292044;border-color:var(--grn);font-weight:700}
+button:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+main{max-width:1180px;margin:0 auto;padding:16px}
+.bar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:14px;font:13px system-ui,sans-serif;color:var(--mut)}
+.bar button.on{background:var(--pri);color:#fff;border-color:var(--pri)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:14px}
+.k{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--grn);padding:10px 12px;border-radius:10px;box-shadow:0 3px 12px #3920600b}
+.k b{display:block;font-size:26px;color:var(--pri);line-height:1.1}.k span{font:12px system-ui,sans-serif;color:var(--mut)}
+.g{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:12px}
+.c{background:var(--card);border:1px solid var(--line);padding:14px;min-width:0;border-radius:12px;box-shadow:0 3px 14px #3920600b}
+.c h2{margin:0 0 4px;font-size:16px}.c p{margin:0 0 10px;font:12px system-ui,sans-serif;color:var(--mut)}
+.r{display:grid;grid-template-columns:96px 1fr 62px;gap:8px;align-items:center;margin:4px 0;font:12px system-ui,sans-serif}
+.r i{display:block;height:15px;background:var(--pri);border-radius:5px;min-width:2px}.r em{font-style:normal;text-align:right}
+.r span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.biz{border-left:5px solid var(--grn);background:#fbfff4;border-top:1px solid var(--line);border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:12px 14px;margin-top:12px;border-radius:10px}
+.biz h2{margin:0 0 4px;font-size:15px;color:#4e169d}.biz p{margin:0;font:13px/1.5 system-ui,sans-serif}
+.tw{overflow-x:auto}table{border-collapse:collapse;width:100%;font:12px system-ui,sans-serif}
+th,td{padding:5px 8px;border-bottom:1px solid var(--line);text-align:left}th{background:#6420bd;color:var(--hdrink)}
+footer{max-width:1180px;margin:0 auto;padding:6px 16px 24px;font:11px system-ui,sans-serif;color:var(--mut)}
+.pg{display:none}.pg.on{display:block}
+</style></head><body>
+<header><div><h1>Culturama BI</h1><small>Mapeamento Regional da Diversidade · Geo-Analytics</small></div>
+<nav id="nav"></nav></header>
+<main>
+<div class="bar" id="slc"><span>Região:</span></div>
+
+<section class="pg on" id="p0">
+ <div class="kpis" id="k0"></div>
+ <div class="g">
+  <div class="c"><h2>Línguas indígenas mais faladas</h2><p>Falantes com 2 anos ou mais · Censo 2022</p><div id="c0a"></div></div>
+  <div class="c"><h2>Grau de ameaça (UNESCO, 2010)</h2><p>Línguas do Brasil por categoria · 178 listadas</p><div id="c0b"></div></div>
+  <div class="c"><h2>Evolução 2010 → 2022</h2><p>Quanto cresceu cada indicador</p><div id="c0c"></div></div>
+ </div>
+</section>
+
+<section class="pg" id="p1">
+ <div class="kpis" id="k1"></div>
+ <div class="bar" id="m1"><span>Indicador:</span></div>
+ <div class="g">
+  <div class="c"><h2 id="t1">População indígena</h2><p>Por estado · Censo 2022 (filtro de região aplicado)</p><div id="c1a"></div></div>
+  <div class="c"><h2>Crescimento indígena 2010 → 2022</h2><p>Variação percentual por estado</p><div id="c1b"></div></div>
+ </div>
+</section>
+
+<section class="pg" id="p2">
+ <div class="kpis" id="k2"></div>
+ <div class="g">
+  <div class="c"><h2>Bens culturais por estado</h2><p>Tombados + ferroviários + quilombolas + museus (filtro de região aplicado)</p><div id="c2a"></div></div>
+  <div class="c"><h2>Composição nacional</h2><p>Total de bens por categoria</p><div id="c2b"></div></div>
+ </div>
+</section>
+
+<section class="pg" id="p3">
+ <div class="kpis" id="k3"></div>
+ <div class="g">
+  <div class="c"><h2>Festas tradicionais</h2><p>Estado de origem ou mais popular</p><div class="tw"><table id="tf"></table></div></div>
+  <div class="c"><h2>Danças tradicionais</h2><p>Estado de origem ou mais popular</p><div class="tw"><table id="td"></table></div></div>
+  <div class="c"><h2>Manifestações por estado</h2><p>Festas + danças listadas</p><div id="c3a"></div></div>
+ </div>
+</section>
+</main>
+<footer>Fontes: IBGE (Censo 2010 e 2022), UNESCO (Atlas de Línguas em Perigo, 2010; dados antigos), IPHAN, IBRAM/MuseusBR e levantamento do grupo Culturama.</footer>
+<script>
+const REG={RO:'Norte',AC:'Norte',AM:'Norte',RR:'Norte',PA:'Norte',AP:'Norte',TO:'Norte',MA:'Nordeste',PI:'Nordeste',CE:'Nordeste',RN:'Nordeste',PB:'Nordeste',PE:'Nordeste',AL:'Nordeste',SE:'Nordeste',BA:'Nordeste',MG:'Sudeste',ES:'Sudeste',RJ:'Sudeste',SP:'Sudeste',PR:'Sul',SC:'Sul',RS:'Sul',MS:'Centro-Oeste',MT:'Centro-Oeste',GO:'Centro-Oeste',DF:'Centro-Oeste'};
+// UF,indígena2010,indígena2022,quilombola,quilombola em território
+const P=[['RO',13076,21146,2925,221],['AC',17578,31694,0,0],['AM',183514,490935,2812,1231],['RR',55922,97668,0,0],['PA',51217,80980,135603,44560],['AP',7411,11334,12894,4909],['TO',14118,20023,13077,1328],['MA',38831,57166,269168,29142],['PI',2944,7202,31786,8419],['CE',20697,56372,23994,4609],['RN',2597,11724,22371,3450],['PB',25043,30140,16765,2922],['PE',60995,106646,78864,6769],['AL',16291,25725,37724,691],['SE',5221,4710,28163,12748],['BA',60120,229443,397502,20771],['MG',31677,36699,135315,4576],['ES',9585,14410,15659,2793],['RJ',15894,16994,20447,3500],['SP',41981,55331,11006,4076],['PR',26559,30466,7113,648],['SC',18213,21773,4449,580],['RS',34001,36102,17552,2617],['MS',77025,116469,2572,1145],['MT',51696,58356,11729,958],['GO',8583,19517,30391,5106],['DF',6128,5811,305,0]];
+// UF,tombados,ferroviários,quilombolas,museus
+const B=[['SP',252,58,0,703],['RJ',549,61,2,350],['MG',344,105,6,503],['RS',111,30,0,503],['BA',344,12,3,196],['PR',45,94,6,317],['SC',140,52,0,263],['PE',145,48,0,153],['CE',78,67,1,185],['PA',94,0,0,65],['PB',38,13,0,106],['GO',57,9,1,86],['DF',51,0,0,90],['ES',38,10,0,90],['RN',23,6,0,92],['AL',30,19,0,70],['MA',39,15,2,55],['SE',43,15,0,35],['MS',15,11,1,61],['PI',24,27,0,35],['MT',21,0,0,58],['AM',15,0,0,48],['TO',9,0,1,22],['AC',6,0,0,24],['RO',7,0,0,18],['AP',3,0,0,11],['RR',6,0,0,4]];
+const FE=[['Festival de Parintins','Amazonas'],['Festa Junina','Vários estados'],['Desfile das Escolas de Samba','Rio de Janeiro'],['Lavagem do Bonfim','Bahia'],['Festa do Peão de Barretos','São Paulo'],['Círio de Nazaré','Pará'],['Guerreiro das Alagoas','Alagoas'],['Bom Jesus dos Navegantes','Alagoas'],['Fortal','Ceará'],['Bumba meu Boi','Maranhão'],['Festa do Divino','Mato Grosso'],['Festival Pantaneiro','Mato Grosso do Sul'],['Carnaval de Ouro Preto','Minas Gerais'],['Festa de Iemanjá','Rio de Janeiro']];
+const DA=[['Frevo','Pernambuco'],['Maculelê','Bahia'],['Carimbó','Pará'],['Marabaixo','Amapá'],['Cavalhada','Goiás'],['Jongo','Rio de Janeiro'],['Lambada','Pará'],['Xaxado','Pernambuco'],['Samba','Rio de Janeiro']];
+const L=[['Tikúna',51978],['Guarani Kaiowá',38658],['Guajajara',29212],['Kaingang',27482],['Xavante',21772],['Yanomami',19174],['Sateré-Mawé',15421],['Nheengatu',13070],['Munduruku',12961],['Tukano',12435]];
+const U=[['Vulnerável',97],['Criticamente ameaçada',45],['Gravemente ameaçada',18],['Definitivamente ameaçada',17],['Extinta',1]];
+const fmt=n=>n.toLocaleString('pt-BR');
+let tab=0,reg='Todas',met='ind';
+const $=id=>document.getElementById(id);
+function bars(id,rows,col){const m=Math.max(...rows.map(r=>r[1]),1);$(id).innerHTML=rows.map(r=>`<div class="r"><span title="${r[0]}">${r[0]}</span><div><i style="width:${Math.max(r[1]/m*100,1)}%;${col?'background:var('+col+')':''}"></i></div><em>${r[2]||fmt(r[1])}</em></div>`).join('')}
+function kp(id,a){$(id).innerHTML=a.map(x=>`<div class="k"><b>${x[0]}</b><span>${x[1]}</span></div>`).join('')}
+const sum=(a,i)=>a.reduce((s,r)=>s+r[i],0);
+function render(){
+ const fp=P.filter(r=>reg=='Todas'||REG[r[0]]==reg), fb=B.filter(r=>reg=='Todas'||REG[r[0]]==reg);
+ kp('k0',[['295','línguas indígenas (Censo 2022)'],['474.856','falantes (2 anos ou mais)'],['391','etnias indígenas'],['+47,7%','falantes 5+ desde 2010'],['45','línguas criticamente ameaçadas']]);
+ bars('c0a',L,'--pri');bars('c0b',U,'--acc');
+ bars('c0c',[['População',88.96,'+89,0%'],['Etnias',28.2,'+28,2%'],['Línguas',7.7,'+7,7%'],['Línguas em TI',16.4,'+16,4%'],['Falantes 5+',47.7,'+47,7%']],'--grn');
+ kp('k1',[[fmt(sum(fp,2)),'indígenas em 2022'],[fmt(sum(fp,3)),'quilombolas'],['+'+(((sum(fp,2)/sum(fp,1))-1)*100).toFixed(0)+'%','crescimento indígena 2010→2022'],[Math.round(sum(fp,4)/Math.max(sum(fp,3),1)*100)+'%','quilombolas em território delimitado']]);
+ const i=met=='ind'?2:3;$('t1').textContent=met=='ind'?'População indígena':'População quilombola';
+ bars('c1a',[...fp].sort((a,b)=>b[i]-a[i]).slice(0,12).map(r=>[r[0],r[i]]),met=='ind'?'--pri':'--blu');
+ bars('c1b',[...fp].map(r=>[r[0],(r[2]/r[1]-1)*100]).sort((a,b)=>b[1]-a[1]).slice(0,12).map(r=>[r[0],r[1],'+'+r[1].toFixed(0)+'%']),'--grn');
+ const T=r=>r[1]+r[2]+r[3]+r[4];
+ kp('k2',[[fmt(sum(fb,1)),'bens tombados (IPHAN)'],[fmt(sum(fb,2)),'bens ferroviários'],[fmt(sum(fb,4)),'museus'],[fmt(sum(fb.map(r=>[T(r)]),0)),'total de bens culturais']]);
+ bars('c2a',[...fb].sort((a,b)=>T(b)-T(a)).slice(0,12).map(r=>[r[0],T(r)]),'--pri');
+ bars('c2b',[['Museus',sum(fb,4)],['Tombados',sum(fb,1)],['Ferroviários',sum(fb,2)],['Quilombolas',sum(fb,3)]],'--acc');
+ kp('k3',[[FE.length,'festas listadas'],[DA.length,'danças listadas'],[new Set([...FE,...DA].map(r=>r[1])).size,'estados/regiões citados']]);
+ const tb=(id,a)=>$(id).innerHTML='<tr><th>Nome</th><th>Estado</th></tr>'+a.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join('');
+ tb('tf',FE);tb('td',DA);
+ const c={};[...FE,...DA].forEach(r=>c[r[1]]=(c[r[1]]||0)+1);
+ bars('c3a',Object.entries(c).sort((a,b)=>b[1]-a[1]).slice(0,10),'--blu');
+}
+['Línguas e Idiomas','Povos Indígenas e Quilombolas','Patrimônio Cultural','Festas e Danças'].forEach((n,i)=>{const b=document.createElement('button');b.textContent=n;b.onclick=()=>{tab=i;document.querySelectorAll('.pg').forEach((p,j)=>p.classList.toggle('on',i==j));document.querySelectorAll('#nav button').forEach((x,j)=>x.classList.toggle('on',i==j));$('slc').style.display=(i==1||i==2)?'flex':'none'};if(!i)b.classList.add('on');$('nav').appendChild(b)});
+['Todas','Norte','Nordeste','Sudeste','Sul','Centro-Oeste'].forEach(n=>{const b=document.createElement('button');b.textContent=n;if(n=='Todas')b.classList.add('on');b.onclick=()=>{reg=n;document.querySelectorAll('#slc button').forEach(x=>x.classList.toggle('on',x==b));render()};$('slc').appendChild(b)});
+$('m1').innerHTML+='';[['ind','Indígenas'],['quil','Quilombolas']].forEach(([k,n])=>{const b=document.createElement('button');b.textContent=n;if(k=='ind')b.classList.add('on');b.onclick=()=>{met=k;document.querySelectorAll('#m1 button').forEach(x=>x.classList.toggle('on',x==b));render()};$('m1').appendChild(b)});
+$('slc').style.display='none';render();
+</script></body></html>
